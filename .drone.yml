@@ -1,5 +1,5 @@
 trigger_common: &trigger_common
-  image: metwork/drone-downstream-specific-image:${DRONE_BRANCH}
+  image: metwork/drone-downstream-specific-image:latest
   pull: true
   secrets: [ downstream_token, downstream_server ]
   params:
@@ -9,6 +9,7 @@ trigger_common: &trigger_common
 pipeline:
   docker:
     image: metwork/drone-docker-specific-image:latest
+    pull: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /root:/root
