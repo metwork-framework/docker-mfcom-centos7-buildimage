@@ -1,4 +1,4 @@
-# automatically generated from https://github.com/metwork-framework/resources/blob/master/cookiecutter/%7B%7Bcookiecutter.repo%7D%7D/docker-mfxxx-yyy-buildimage_drone.yml)
+# automatically generated from https://github.com/metwork-framework/github_organization_management/blob/master/common_files/docker-mfxxx-yyy-buildimage_drone.yml)
 
 
     
@@ -29,15 +29,9 @@ pipeline:
       - if test "$${HASH_BEFORE}" = "$${HASH_AFTER}"; then
           touch .drone_downstream_bypass;
         else
+          docker push metwork/mfcom-centos7-buildimage:${DRONE_BRANCH};
           if test "${DRONE_BRANCH}" = "master"; then
-            docker push metwork/mfcom-centos7-buildimage:${DRONE_BRANCH};
             docker push metwork/mfcom-centos7-buildimage:latest;
-          elif test "${DRONE_BRANCH}" = "integration"; then
-            docker push metwork/mfcom-centos7-buildimage:${DRONE_BRANCH};
-          elif test "${DRONE_BRANCH}" = "release_0.7"; then
-            docker push metwork/mfcom-centos7-buildimage:${DRONE_BRANCH};
-          elif test "${DRONE_BRANCH}" = "release_0.8"; then
-            docker push metwork/mfcom-centos7-buildimage:${DRONE_BRANCH};
           fi;
         fi
     when:
